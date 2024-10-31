@@ -4,4 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "ridings#index"
+  resources :ridings do
+    resources :polling_locations, only: [:edit, :update] do
+      collection do
+        patch 'update_all'
+      end
+    end
+  end  
 end
